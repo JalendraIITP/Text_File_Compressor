@@ -90,14 +90,14 @@ void Ncode(Node* root, vector<bool>&str,unordered_map<char, vector<bool>> &HCode
 string Dcode(string to_decode,Node*root)
 {
 	/* 
-	   Decoding : we have to pointers (IthIndex, temp) and a pointer to the root varialbe.
-	   while, Traversing the to_decode binary string if to_decode[IthIndex] == 0, we will move the pointer temp
-	   its left child's Node. Once we reech the leaf node we will store the character present in the Node and
-	   move the temp pointer to root, and so on..................
-	                                    (root)
-									  0 /    \ 1
-									   /      \
-								   (LNode)  (RNode)
+	   Decoding: we have two pointers (IthIndex, temp) and a pointer to the root variable.
+	   While Traversing the to_decode binary string, if to_decode[IthIndex] == 0, we will move the pointer temp
+	   to its left child's Node. Once we reach the leaf node, we will store the character present in the Node and
+	   move the temp pointer to the root, and so on..................
+	                                (root)
+				       0 /    \ 1
+			     	        /      \
+				    (LNode)  (RNode)
 	*/
 	Node*temp = root;
 	int IthIndex = 0;
@@ -140,14 +140,11 @@ int main()
 
 	/*......................***....................***ENCODING***.......................***..................*/
 
-	/* Encoding the each characters present in the string to s sequence of unique Binary Numbers */
+	/* Encoding each characters present in the string to s sequence of unique Binary Numbers */
 	vector<bool>str;
 	unordered_map<char,vector<bool>>Hcode;
 	Ncode(root,str,Hcode);
-    /* for(auto x : Hcode){
-		cout<<x.first<<" ";
-		for(auto x : x.second)cout<<x;cout<<endl;
-	} */
+	
 	/* Storing the String in terms of Binary digits with the help of Encoded data to a newly created EncodedFile.txt file */
 	ofstream MyFile("Compressed.txt");
     for(int i=0;i<text.size();i++){
@@ -164,7 +161,7 @@ int main()
 
     /*......................***....................***DECODING***.......................***..................*/
 
-	/* Extrating the EncodedFile.txt which was created on the above steps & storing it into to_encode string */
+	/* Extracting the EncodedFile.txt, which was created on the above steps & storing it into to_encode string */
 	ifstream file_("Compressed.txt");
 	string to_decode;
 	if(file_)
